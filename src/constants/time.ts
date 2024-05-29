@@ -1,0 +1,2 @@
+export const DATE_FORMAT_DEFAULT_EN = 'MM/DD/YYYY'
+export const DATE_FORMAT_DEFAULT_VI = 'DD/MM/YYYY'
