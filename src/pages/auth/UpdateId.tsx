@@ -12,6 +12,7 @@ import { useForm } from 'react-hook-form'
 import { useTranslation } from 'react-i18next'
 import { useNavigate } from 'react-router-dom'
 import { StyledButtonUpdateId, StyledMiddle, StyledWrapUpdateID } from './styles'
+import { convertSexToValidGender } from '@/utils/index'
 type FormValues = {
 	front: any
 	back: any
@@ -44,7 +45,6 @@ const UpdateId = () => {
 					'api-key': import.meta.env.VITE_API_FPTAI_ID,
 				},
 			})
-
 			handleUpdateInfo(data[0] || data)
 		} catch (error) {
 			console.log('🚀 ~ file: UpdateId.tsx:40 ~ sendIDProfile ~ error:', error)
@@ -53,14 +53,19 @@ const UpdateId = () => {
 
 	const handleUpdateInfo = async (data: { data: IInfoFPT[] }) => {
 		try {
-			const dataRequest = { ...data.data[0], userId: verifyInfo?.userId || '' }
+			const dataRequest = {
+				...data.data[0],
+				userId: verifyInfo?.userId || '',
+				sex: convertSexToValidGender(data.data[0].sex),
+			}
+			console.log('🚀 ~ file: UpdateId.tsx:46 ~ handleUpdateInfo ~ dataRequest', dataRequest)
 			const response = await authApi.verifyInfo(dataRequest)
 
 			localStorage.setItem('dataUser', JSON.stringify(response.data.data))
 
 			dispatch(setUserInfo(response.data.data))
-
 			ShowNostis.success(response.data.message || 'Cập nhập thành công !!!')
+			navigate('/')
 		} catch (error) {
 			console.log('🚀 ~ file: UpdateId.tsx:46 ~ handleUpdateInfo ~ error:', error)
 			ShowNostis.error('Something went wrong, please contact an admin')

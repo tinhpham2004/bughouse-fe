@@ -1,3 +1,5 @@
+import { string } from 'yup'
+
 export const getPathNameAfterSlah = (pathName: string) => {
 	const arrayPath = pathName.split('/')
 
@@ -87,4 +89,15 @@ export function convertStringToTitleCase(input: string): string {
 	const titleCase = words.map((word) => word.charAt(0).toUpperCase() + word.slice(1)).join(' ')
 
 	return titleCase
+}
+
+export function convertSexToValidGender(sex: string): string {
+	switch (sex) {
+		case 'NAM':
+			return 'Man'
+		case 'NỮ':
+			return 'Female'
+		default:
+			return 'Other'
+	}
 }
