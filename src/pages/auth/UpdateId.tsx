@@ -11,7 +11,7 @@ import { useEffect } from 'react'
 import { useForm } from 'react-hook-form'
 import { useTranslation } from 'react-i18next'
 import { useNavigate } from 'react-router-dom'
-import { StyledButtonUpdateId, StyledMiddle, StyledWrapUpdateID } from './styles'
+import { StyledButton, StyledButtonBack, StyledButtonUpdateId, StyledMiddle, StyledWrapUpdateID } from './styles'
 import { convertSexToValidGender } from '@/utils/index'
 type FormValues = {
 	front: any
@@ -27,13 +27,14 @@ const UpdateId = () => {
 	})
 	const navigate = useNavigate()
 	const verifyInfo = useAppSelector((state) => state.authSlice.verifyInfo)
+	const userInfo = useAppSelector((state) => state.authSlice.userInfo)
 	const dispatch = useAppDispatch()
 
 	useEffect(() => {
-		if (!verifyInfo) {
+		if (!verifyInfo && !userInfo) {
 			navigate('/login')
 		}
-	}, [verifyInfo])
+	}, [verifyInfo, userInfo])
 
 	const sendIDProfile = handleSubmit(async (values) => {
 		const formData = new FormData()
@@ -55,7 +56,7 @@ const UpdateId = () => {
 		try {
 			const dataRequest = {
 				...data.data[0],
-				userId: verifyInfo?.userId || '',
+				userId: verifyInfo?.userId || userInfo?.user._id || '',
 				sex: convertSexToValidGender(data.data[0].sex),
 			}
 			console.log('🚀 ~ file: UpdateId.tsx:46 ~ handleUpdateInfo ~ dataRequest', dataRequest)
@@ -65,11 +66,15 @@ const UpdateId = () => {
 
 			dispatch(setUserInfo(response.data.data))
 			ShowNostis.success(response.data.message || 'Cập nhập thành công !!!')
-			navigate('/')
+			navigate('/', { replace: true })
 		} catch (error) {
 			console.log('🚀 ~ file: UpdateId.tsx:46 ~ handleUpdateInfo ~ error:', error)
 			ShowNostis.error('Something went wrong, please contact an admin')
 		}
+	}
+
+	const handleGoBack = () => {
+		navigate('/', { replace: true })
 	}
 
 	const { t } = useTranslation()
@@ -77,7 +82,7 @@ const UpdateId = () => {
 	return (
 		<StyledWrapUpdateID>
 			<SEO title="Bughouse 🤡 - Update your ID" />
-
+			{userInfo && <StyledButtonBack onClick={handleGoBack}>{t('Update_id.GO_BACK')}</StyledButtonBack>}
 			<p className="heading">{t('Update_id.More_info')}</p>
 
 			<p className="description_updateId">

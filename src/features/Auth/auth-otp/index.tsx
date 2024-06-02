@@ -9,6 +9,7 @@ import { useEffect, useState } from 'react'
 import OtpInput from 'react-otp-input'
 import { useNavigate } from 'react-router-dom'
 import { StyledButtonOtp, StyledHeading, StyledMainOtp, StyledWrapOTP } from './styles'
+import { replace } from 'lodash'
 const AuthOtpContainer = () => {
 	const [otp, setOtp] = useState('')
 	const [isResent, setIsResent] = useState<any>()
@@ -17,7 +18,6 @@ const AuthOtpContainer = () => {
 	const verifyInfo = useAppSelector((state) => state.authSlice.verifyInfo)
 	useEffect(() => {
 		if (!verifyInfo) {
-			navigate('/login')
 		}
 	}, [verifyInfo])
 
@@ -45,8 +45,10 @@ const AuthOtpContainer = () => {
 			const response = await authApi.confirmOtp({ otp, username: verifyInfo?.username || '' })
 			//@ts-ignore
 			ShowNostis.success(response?.message)
-			// If success, navigate to registerAuth to continue verify info
-			navigate('/registerAuth')
+			// If success, navigate to registerAuth to continue verify info and remove current verify info page in history stack
+			navigate('/registerAuth', {
+				replace: true,
+			})
 		} catch (error: any) {
 			ShowNostis.error(error.data.message)
 		}

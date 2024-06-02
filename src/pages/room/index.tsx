@@ -10,7 +10,7 @@ import { typeOfRoom } from '@/constants/room'
 import { IpropsRoomMaster } from '@/models/room'
 import { getContract, getContractTerm } from '@/utils/contract'
 import { getIcon } from '@/utils/icon'
-import { randomId } from '@/utils/index'
+import { getLastName, randomId } from '@/utils/index'
 import ShowNostis from '@/utils/show-noti'
 import { formatDDMMYYYY } from '@/utils/time'
 import CottageOutlinedIcon from '@mui/icons-material/CottageOutlined'
@@ -355,8 +355,8 @@ export default function RoomDetail() {
 											(Ký và ghi rõ họ tên)
 										</Box>
 										<Box className="signContent">
-											<p>Bảo</p>
-											<p>Đoàn Ngọc Quốc Bảo</p>
+											<p>{getLastName(RoomData?.data?.owner?.name!)}</p>
+											<p>{RoomData?.data?.owner?.name}</p>
 										</Box>
 									</SignNameItem>
 

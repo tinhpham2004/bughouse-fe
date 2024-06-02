@@ -65,7 +65,8 @@ export const deleteToken = () => {
 	localStorage.removeItem('dataVerified')
 	store.dispatch(setUserInfo(null))
 	store.dispatch(setVerifiedInfo(null))
-	return ShowNostis.error('Login expired !!! ')
+	// ShowNostis.error('Login expired !!! ')
+	window.location.href = '/login'
 }
 
 export default createAxiosInstance()

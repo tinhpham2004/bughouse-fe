@@ -40,6 +40,7 @@ import {
 	StyledNotificationItem,
 	StyledWrapHeader,
 } from './HeaderStyle'
+import { use } from 'i18next'
 
 const Header = () => {
 	const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null)
@@ -94,7 +95,7 @@ const Header = () => {
 							<Avatar className="avatar" onClick={() => navigate('/login')} />
 						) : (
 							<>
-								<Avatar className="avatar" srcSet="https://api.multiavatar.com/123.png" />
+								<Avatar className="avatar" srcSet={user.avatar} />
 								<span className="name_heading">{user.username}</span>
 								<ExpandMore />
 							</>

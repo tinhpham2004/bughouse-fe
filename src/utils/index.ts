@@ -101,3 +101,22 @@ export function convertSexToValidGender(sex: string): string {
 			return 'Other'
 	}
 }
+
+export function convertGenderToValidSex(gender: string): string {
+	switch (gender) {
+		case 'Man':
+			return 'Nam'
+		case 'Female':
+			return 'Nữ'
+		default:
+			return 'Khác'
+	}
+}
+
+export function getLastName(fullName: string): string {
+	const names = fullName.trim().split(' ')
+	if (names.length <= 1) {
+		return names[0]
+	}
+	return names[names.length - 1]
+}
