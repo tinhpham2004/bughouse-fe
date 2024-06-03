@@ -1,5 +1,5 @@
 import { authApi } from '@/api/authApi'
-import { setUserInfo } from '@/app/authSlice'
+import { setUserInfo, setVerifiedInfo } from '@/app/authSlice'
 import { useAppDispatch, useAppSelector } from '@/app/hook'
 import UploadImage from '@/components/common/UploadImage'
 import SEO from '@/components/seo'
@@ -61,9 +61,9 @@ const UpdateId = () => {
 			}
 			console.log('🚀 ~ file: UpdateId.tsx:46 ~ handleUpdateInfo ~ dataRequest', dataRequest)
 			const response = await authApi.verifyInfo(dataRequest)
-
 			localStorage.setItem('dataUser', JSON.stringify(response.data.data))
-
+			// Remove data verify info
+			localStorage.removeItem('dataVerified')
 			dispatch(setUserInfo(response.data.data))
 			ShowNostis.success(response.data.message || 'Cập nhập thành công !!!')
 			navigate('/', { replace: true })

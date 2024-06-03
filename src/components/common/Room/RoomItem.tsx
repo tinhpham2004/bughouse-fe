@@ -464,6 +464,8 @@ RoomItem.ModalReOpen = ({ open, setOpen, roomItem }: IPropsModal) => {
 		mutationFn: roomApi.doReOpenRoom,
 		onSuccess: (data) => {
 			queryClient.invalidateQueries({ queryKey: ['getRoomRented'] })
+			// Close modal
+			setOpen(false)
 			ShowNostis.success('Re-open room successfully !!!!')
 		},
 		onError: (error) => {

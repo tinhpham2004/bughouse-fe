@@ -82,7 +82,7 @@ const defaultValues = {
 	},
 }
 
-const AddRoom = () => {
+const AddRoom = (roomId?: string) => {
 	const {
 		handleSubmit,
 		control,
@@ -167,7 +167,13 @@ const AddRoom = () => {
 	const handelSubmitRoom = async (values: any) => {
 		setIsLoading(true)
 		try {
+			// Check if images is empty or not
 			const { images } = values
+			if (!images || images?.length === 0) {
+				ShowNostis.error('Please select images for room')
+				setIsLoading(false)
+				return
+			}
 
 			const formData = new FormData()
 			for (let i = 0; i < images?.length; i++) {
@@ -210,6 +216,9 @@ const AddRoom = () => {
 			},
 		]
 		values.deposit = values.basePrice
+		if (roomId) {
+			values.roomId = roomId
+		}
 
 		try {
 			const response = await roomApi.createRoom(values)

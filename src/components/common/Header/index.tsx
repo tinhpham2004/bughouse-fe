@@ -63,7 +63,7 @@ const Header = () => {
 	const handleClose = (to?: string, callBack?: any) => {
 		setAnchorEl(null)
 		setTimeout(() => {
-			if (to) navigate(to)
+			if (to) navigate(to, { replace: true }) // replace: true to remove the current page in history stack
 		}, 300)
 		if (callBack) callBack()
 	}
@@ -155,6 +155,7 @@ const Header = () => {
 						handleClose('/login', () => {
 							localStorage.removeItem('dataUser')
 							ShowNostis.success('Logout success !!!')
+							//
 							dispatch(setUserInfo(null))
 						})
 					}

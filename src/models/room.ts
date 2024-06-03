@@ -98,6 +98,7 @@ export interface IRoomParams {
 	}
 	amentilities: string[]
 	services: IServiceType[]
+	roomId?: string
 }
 
 export interface IServiceType {
