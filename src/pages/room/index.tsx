@@ -458,7 +458,9 @@ RoomDetail.InfoOfMaster = ({ dataOwner, postDate }: IpropsRoomMaster) => {
 
 			<StyledInfoOfOwner>
 				<div className="img">
-					<img src={`${dataOwner?.avatar || 'https://api.multiavatar.com/lol.png'}`} />
+					<img
+						src={`${dataOwner?.avatar || `https://api.multiavatar.com/${dataOwner?._id || '123456'}.png`}`}
+					/>
 				</div>
 				<div className="main-content">
 					<p>{dataOwner?.name || dataOwner?.username || 'Đang cập nhật'}</p>

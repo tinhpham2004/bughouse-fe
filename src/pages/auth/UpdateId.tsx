@@ -82,7 +82,10 @@ const UpdateId = () => {
 	return (
 		<StyledWrapUpdateID>
 			<SEO title="Bughouse 🤡 - Update your ID" />
-			{userInfo && <StyledButtonBack onClick={handleGoBack}>{t('Update_id.GO_BACK')}</StyledButtonBack>}
+			{/* Make sure user is logged in */}
+			{userInfo.user._id !== '' && (
+				<StyledButtonBack onClick={handleGoBack}>{t('Update_id.GO_BACK')}</StyledButtonBack>
+			)}
 			<p className="heading">{t('Update_id.More_info')}</p>
 
 			<p className="description_updateId">
