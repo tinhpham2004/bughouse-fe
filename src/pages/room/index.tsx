@@ -153,7 +153,7 @@ export default function RoomDetail() {
 
 				<HeadingRoomBlock>
 					<Typography className="headingRoom">
-						{RoomData?.data?.name.replace(/,/g, '') || 'tên đang cập nhập'}
+						{RoomData?.data?.name.replace(/,/g, '') || 'tên đang '}
 					</Typography>
 
 					<div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
@@ -213,7 +213,7 @@ export default function RoomDetail() {
 									/>
 									<RoomDetailInfo
 										label={t('Room.deposit')}
-										value={RoomData?.data?.deposit.toLocaleString() + ' đồng' || 'Đang cập nhập'}
+										value={RoomData?.data?.deposit.toLocaleString() + ' đồng' || 'Đang cập nhật'}
 										xs={4}
 										md={3}
 									/>
@@ -458,10 +458,10 @@ RoomDetail.InfoOfMaster = ({ dataOwner, postDate }: IpropsRoomMaster) => {
 
 			<StyledInfoOfOwner>
 				<div className="img">
-					<img src={`https://api.multiavatar.com/${dataOwner?._id}.png`} />
+					<img src={`${dataOwner?.avatar || 'https://api.multiavatar.com/lol.png'}`} />
 				</div>
 				<div className="main-content">
-					<p>{dataOwner?.name || dataOwner?.username || 'Đang cập nhập'}</p>
+					<p>{dataOwner?.name || dataOwner?.username || 'Đang cập nhật'}</p>
 					<p>
 						<span> {dataOwner?.phone || '+84911336236'} </span>
 					</p>

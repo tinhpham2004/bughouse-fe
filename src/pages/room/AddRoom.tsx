@@ -82,7 +82,7 @@ const defaultValues = {
 	},
 }
 
-const AddRoom = (roomId?: string) => {
+const AddRoom = () => {
 	const {
 		handleSubmit,
 		control,
@@ -216,9 +216,6 @@ const AddRoom = (roomId?: string) => {
 			},
 		]
 		values.deposit = values.basePrice
-		if (roomId) {
-			values.roomId = roomId
-		}
 
 		try {
 			const response = await roomApi.createRoom(values)

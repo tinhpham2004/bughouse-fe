@@ -65,7 +65,7 @@ const UpdateId = () => {
 			// Remove data verify info
 			localStorage.removeItem('dataVerified')
 			dispatch(setUserInfo(response.data.data))
-			ShowNostis.success(response.data.message || 'Cập nhập thành công !!!')
+			ShowNostis.success(response.data.message || 'Cập nhật thành công !!!')
 			navigate('/', { replace: true })
 		} catch (error) {
 			console.log('🚀 ~ file: UpdateId.tsx:46 ~ handleUpdateInfo ~ error:', error)

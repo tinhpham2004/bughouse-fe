@@ -32,7 +32,7 @@
 		"Edit_My_Data": "Chỉnh sửa thông tin",
 		"My_profile": "Thông tin của tôi",
 		"Complete_your_Profile": "Hoàn thành thông tin",
-		"Sub_Complete_your_Profile": "Tiến trình hoàn thành cập nhập thông tin",
+		"Sub_Complete_your_Profile": "Tiến trình hoàn thành cập nhật thông tin",
 		"Verified_Email_ID": "Đã xác thực Email",
 		"Verified_mobile_Number": "Đã xác thực số điện thoại",
 		"Complete_Basic_Info": "Hoàn thành thông tin cơ bản",
@@ -129,7 +129,7 @@
 		"Male": "Nam",
 		"Female": "Nữ",
 
-		"Upadate_info": "Cập nhập thông tin phòng ",
+		"Upadate_info": "Cập nhật thông tin phòng ",
 		"Create_room": "Đăng phòng",
 		"Title_room": "Tiêu đề phòng",
 		"Acreage": "Diện tích phòng",
@@ -148,7 +148,7 @@
 		"image": "tấm ảnh",
 		"details_description": "Mô tả chi tiết",
 		"more_terms": "Thêm Điều Khoản",
-		"update_room": "Cập nhập phòng",
+		"update_room": "Cập nhật phòng",
 		"create_room": "Tạo phòng",
 		"add_images": "Thêm ảnh ",
 
