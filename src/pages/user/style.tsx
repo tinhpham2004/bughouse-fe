@@ -127,7 +127,7 @@ export const StyledWrapDetailInfo = styled(Box)`
 
 export const StyledButtonEdit = styled('button')`
 	width: 100%;
-	background: #878cff;
+	background: #6363cf;
 	border-radius: 5px;
 	padding: 15px 0;
 	color: white;

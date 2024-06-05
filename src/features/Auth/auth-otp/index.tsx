@@ -2,13 +2,14 @@ import { authApi } from '@/api/authApi'
 import { deleteToken } from '@/api/axiosClient'
 import { useAppSelector } from '@/app/hook'
 import Illustration from '@/assets/images/Illustration.svg'
-import { maskPhone } from '@/utils/index'
+import { maskEmail, maskPhone } from '@/utils/index'
 import ShowNostis from '@/utils/show-noti'
 import { Box, Button } from '@mui/material'
 import { useEffect, useState } from 'react'
 import OtpInput from 'react-otp-input'
 import { useNavigate } from 'react-router-dom'
 import { StyledButtonOtp, StyledHeading, StyledMainOtp, StyledWrapOTP } from './styles'
+import { replace } from 'lodash'
 const AuthOtpContainer = () => {
 	const [otp, setOtp] = useState('')
 	const [isResent, setIsResent] = useState<any>()
@@ -17,7 +18,6 @@ const AuthOtpContainer = () => {
 	const verifyInfo = useAppSelector((state) => state.authSlice.verifyInfo)
 	useEffect(() => {
 		if (!verifyInfo) {
-			navigate('/login')
 		}
 	}, [verifyInfo])
 
@@ -36,13 +36,31 @@ const AuthOtpContainer = () => {
 		}
 	}
 
+	const handleSubmitOtp = async () => {
+		try {
+			if (otp.length < 6) {
+				ShowNostis.error('Please enter the correct OTP')
+				return
+			}
+			const response = await authApi.confirmOtp({ otp, username: verifyInfo?.username || '' })
+			//@ts-ignore
+			ShowNostis.success(response?.message)
+			// If success, navigate to registerAuth to continue verify info and remove current verify info page in history stack
+			navigate('/registerAuth', {
+				replace: true,
+			})
+		} catch (error: any) {
+			ShowNostis.error(error.data.message)
+		}
+	}
+
 	return (
 		<StyledWrapOTP>
 			<img src={Illustration} alt="" />
 
 			<StyledHeading>
 				<Box className="main-heading">OTP Verification</Box>
-				<Box className="sub-heading">Code sent via phone to {maskPhone(verifyInfo?.phone || '')}</Box>
+				<Box className="sub-heading">Code sent via email to {maskEmail(verifyInfo?.email || '')}</Box>
 			</StyledHeading>
 
 			<StyledMainOtp>
@@ -77,7 +95,7 @@ const AuthOtpContainer = () => {
 			</StyledMainOtp>
 
 			<StyledButtonOtp>
-				<Button className="button-continue" variant="contained">
+				<Button className="button-continue" variant="contained" onClick={handleSubmitOtp}>
 					Continue
 				</Button>
 

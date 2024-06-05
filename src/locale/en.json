@@ -59,7 +59,8 @@
 		"Description_info2": "Please add photos to the side below",
 		"Front_of_ID": "Front of ID",
 		"Back_of_ID": "Back of ID",
-		"Drag_here": "Drag here"
+		"Drag_here": "Drag here",
+		"GO_BACK": "Back"
 	},
 	"Continue": "Continue",
 	"person": "person",
@@ -75,10 +76,10 @@
 	"Room": {
 		"cancel_contract": "Cancel contract",
 		"confirm": "Confirm",
-		"cancel":"Cancel",
+		"cancel": "Cancel",
 		"canceled_successfully": "Canceled successfully",
 		"date_cancel_contract": "You have canceled the contract and the contract will expire on",
-		"gender":"Male / Female",
+		"gender": "Male / Female",
 		"service_declaration": "Service Declaration",
 		"contract_extension": "Contract extension",
 		"view_contract": "View contract",
@@ -130,7 +131,7 @@
 
 		"Upadate_info": "Update info your room",
 		"Create_room": "Create new room",
-		"Title_room": "Title Room",	
+		"Title_room": "Title Room",
 		"Acreage": "Acreage",
 		"Room_price": "Room price",
 		"Deposit": "Deposit",
@@ -163,14 +164,18 @@
 		"Unit_price_for": "Unit price for",
 		"Old_indicator": "Old indicator",
 		"New_indicator": "New indicator",
-		"Amount_of_people":"Amount of people",
+		"Amount_of_people": "Amount of people",
 		"Service_fee": "Service fee",
 
 		"Accept_cancel": "Accept the request to cancel the contract",
 		"Accept_extends": "Accept the request to extend the contract",
 		"NoRoomFound": "No room can be found",
 		"Status_rented": "Rented",
-		"Status_Available": "Availabe"
+		"Status_Available": "Availabe",
+
+		"internet_per_month": "Internet, wifi cost per month",
+		"power_per_month": "Electricity cost per month",
+		"water_per_month": "Water cost per month"
 	},
 	"Header": {
 		"Notifications": "Notifications",

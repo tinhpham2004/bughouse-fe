@@ -150,3 +150,30 @@ export const StyledContainerWrap = styled(Box)`
 	align-items: center;
 	justify-content: center;
 `
+
+export const StyledButtonBack = styled(Button)`
+	position: absolute;
+	top: 10px;
+	left: 10px;
+
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+	align-items: center;
+	padding: 16px 10px;
+	gap: 10px;
+
+	background: #7f8c8d; /* new color: a softer grey */
+	border-radius: 8px;
+	margin: 40px auto;
+	cursor: pointer;
+	color: white;
+
+	&.disabled {
+		color: white;
+	}
+
+	&:hover {
+		background: #7f8c8d;
+	}
+`

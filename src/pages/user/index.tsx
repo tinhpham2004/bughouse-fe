@@ -16,10 +16,13 @@ import {
 	StyledWrapInfoUser,
 	StyledWrapStepCompleted,
 } from './style'
+import { formatDateToDDMMYYY, formatDateToMMDDYYYYSlash } from '@/utils/time'
+import { convertGenderToValidSex } from '@/utils/index'
+import { useNavigate } from 'react-router-dom'
 
 export const ProfilePage = () => {
 	const { t } = useTranslation()
-
+	const navigate = useNavigate()
 	const { user } = useAppSelector((state) => state.authSlice.userInfo)
 
 	return (
@@ -29,7 +32,10 @@ export const ProfilePage = () => {
 				<StyledWrapInfoUser>
 					<Avatar
 						sx={{ width: 170, height: 170 }}
-						srcSet="https://scontent.fsgn2-7.fna.fbcdn.net/v/t39.30808-6/326706851_905071507593208_1684832252594277761_n.jpg?_nc_cat=108&ccb=1-7&_nc_sid=09cbfe&_nc_ohc=FVDo1ljBqpAAX9L_Ibl&_nc_ht=scontent.fsgn2-7.fna&oh=00_AfDit6WnL3XB4EBzCoNr-HFO14fEDcUsOJJE9QxxE0D0rQ&oe=6419E0FF"
+						srcSet={
+							user.avatar ||
+							'https://scontent.fsgn2-7.fna.fbcdn.net/v/t39.30808-6/326706851_905071507593208_1684832252594277761_n.jpg?_nc_cat=108&ccb=1-7&_nc_sid=09cbfe&_nc_ohc=FVDo1ljBqpAAX9L_Ibl&_nc_ht=scontent.fsgn2-7.fna&oh=00_AfDit6WnL3XB4EBzCoNr-HFO14fEDcUsOJJE9QxxE0D0rQ&oe=6419E0FF'
+						}
 					/>
 					<Typography sx={{ fontSize: 26, textTransform: 'lowercase' }} fontWeight="bold">
 						{user.name || user.username}
@@ -46,7 +52,7 @@ export const ProfilePage = () => {
 						</Typography>
 
 						<Typography variant="body1" fontSize={14} color="#84878B">
-							United State
+							{user.address.city || 'United States'}
 						</Typography>
 					</Box>
 
@@ -55,11 +61,17 @@ export const ProfilePage = () => {
 							{t('USER.Member_Since')}
 						</Typography>
 						<Typography variant="body1" fontSize={14} color="#84878B">
-							05.06.1996
+							{formatDateToDDMMYYY(user.createdAt) || '07.12.1997'}
 						</Typography>
 					</Box>
 
-					<StyledButtonEdit>{t('USER.Edit_My_Data')}</StyledButtonEdit>
+					<StyledButtonEdit
+						onClick={() => {
+							navigate('/registerAuth')
+						}}
+					>
+						{t('USER.Edit_My_Data')}
+					</StyledButtonEdit>
 				</StyledWrapDetailInfo>
 			</StyledGridLayout>
 
@@ -92,17 +104,29 @@ export const ProfilePage = () => {
 				</StyledWrapStepCompleted>
 
 				<Grid container spacing={3}>
-					<ProfilePage.InputFeild name={t('USER.City')} defaultValue="ZuiChi" />
-					<ProfilePage.InputFeild name={t('USER.Street_address')} defaultValue="ZuiChi" />
-					<ProfilePage.InputFeild name={t('USER.Email_address')} defaultValue="baodakmil123@gmail.com" />
-					<ProfilePage.InputFeild name={t('USER.Date_Of_Birth')} defaultValue="07.12.1997" />
-					<ProfilePage.InputFeild name={t('USER.Gender')} defaultValue="Male" />
-					<ProfilePage.InputFeild name={t('USER.ID_Number')} defaultValue="245422915" />
+					<ProfilePage.InputFeild name={t('USER.City')} defaultValue={user.address.city || 'United States'} />
+					<ProfilePage.InputFeild
+						name={t('USER.Street_address')}
+						defaultValue={user.address.street || '1234 Main St'}
+					/>
+					<ProfilePage.InputFeild name={t('USER.Email_address')} defaultValue={user.email || ''} />
+					<ProfilePage.InputFeild
+						name={t('USER.Date_Of_Birth')}
+						defaultValue={formatDateToMMDDYYYYSlash(user.dob) || '07/12/1997'}
+					/>
+					<ProfilePage.InputFeild
+						name={t('USER.Gender')}
+						defaultValue={convertGenderToValidSex(user.gender) || 'Khác'}
+					/>
+					<ProfilePage.InputFeild
+						name={t('USER.ID_Number')}
+						defaultValue={String(user.identity) || '123456789'}
+					/>
 				</Grid>
 
-				<StyledWrapButtonBottom>
+				{/* <StyledWrapButtonBottom>
 					<StyledButtonEdit className="w-inline">{t('USER.Edit_My_Data')}</StyledButtonEdit>
-				</StyledWrapButtonBottom>
+				</StyledWrapButtonBottom> */}
 			</Grid>
 		</Grid>
 	)
