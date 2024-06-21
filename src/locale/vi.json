@@ -35,13 +35,7 @@
 		"Sub_Complete_your_Profile": "Tiến trình hoàn thành cập nhật thông tin",
 		"Verified_Email_ID": "Đã xác thực Email",
 		"Verified_mobile_Number": "Đã xác thực số điện thoại",
-		"Complete_Basic_Info": "Hoàn thành thông tin cơ bản",
-		"City": "Thành phố",
-		"Street_address": "Địa chỉ thường trú",
-		"Email_address": "Địa chỉ email",
-		"Date_Of_Birth": "Ngày sinh",
-		"Gender": "Giới tính",
-		"ID_Number": "Số CMND/CCCD"
+		"Complete_Basic_Info": "Hoàn thành thông tin cơ bản"
 	},
 	"ROOM_RENTED": "Phòng đã thuê",
 	"My_room_page": "Phòng cho thuê",
